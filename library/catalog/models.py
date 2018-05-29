@@ -58,3 +58,20 @@ class BookInstance(models.Model):
     def __str__(self):
         return '{0} ({1})'.format(self.id, self.book.titolo)
         # return f'{self.id} ({self.book.titolo})'
+
+
+class Autore(models.Model):
+
+    nome = models.CharField(max_length=100)
+    cognome = models.CharField(max_length=100)
+    nato = models.DateTimeField(null=True, blank=True)
+    morto = models.DateTimeField('Morto',null=True, blank=True)
+
+    class Meta:
+        ordering = ["cognome","nome"]
+
+    def get_absolute_url(self):
+        return reverse('author-details', args=[str(self.id)])
+
+    def __str__(self):
+        return '{0},{0}'.format(self.cognome, self.nome)
