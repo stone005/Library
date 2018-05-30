@@ -36,6 +36,10 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse('book-detail',args=[str(self.id)])
 
+    def display_genere(self):
+        return ','.join([genere.descr for genere in self.genere.all()[:3]])
+    display_genere.short_description = "Genere"
+
 
 class BookInstance(models.Model):
     """Rappresenta una spacifica copia di quel libro (che potrebbe essere prestato, noleggiato etc. """
@@ -50,7 +54,7 @@ class BookInstance(models.Model):
         (3, 'Disponibile'),
         (4, 'Riservato'),
     )
-    stato = models.IntegerField(max_length=1, choices=Stato_prestito, default=1, help_text='Disponibilità del libro')
+    stato = models.IntegerField(choices=Stato_prestito, default=1, help_text='Disponibilità del libro')
 
     class Meta:
         ordering = ["rientro"]
@@ -74,4 +78,12 @@ class Autore(models.Model):
         return reverse('author-details', args=[str(self.id)])
 
     def __str__(self):
-        return '{0},{0}'.format(self.cognome, self.nome)
+        return '{0},{1}'.format(self.cognome, self.nome)
+
+
+class Language(models.Model):
+
+    descr = models.CharField(max_length=200, help_text='Lingua originale del libro')
+
+    def __str__(self):
+        return self.descr
