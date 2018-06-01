@@ -34,7 +34,7 @@ class Book(models.Model):
         return self.titolo
 
     def get_absolute_url(self):
-        return reverse('book-detail',args=[str(self.id)])
+        return reverse('book-detail', args=[str(self.id)])
 
     def display_genere(self):
         return ','.join([genere.descr for genere in self.genere.all()[:3]])
@@ -61,15 +61,15 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return '{0} ({1})'.format(self.id, self.book.titolo)
-        # return f'{self.id} ({self.book.titolo})'
+        #return f'{self.id} ({self.book.titolo})'
 
 
 class Autore(models.Model):
 
     nome = models.CharField(max_length=100)
     cognome = models.CharField(max_length=100)
-    nato = models.DateTimeField(null=True, blank=True)
-    morto = models.DateTimeField('Morto',null=True, blank=True)
+    nato = models.DateField(null=True, blank=True)
+    morto = models.DateField('Morto',null=True, blank=True)
 
     class Meta:
         ordering = ["cognome","nome"]
