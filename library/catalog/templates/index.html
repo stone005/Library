@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>La mia libreria</title>
+{% endblock %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+<p>Benvenuti nella <em>Libary</em>, un sito di base sviluppato in Django</p>
+<h2>Contenuti</h2>
+
+<p>La libreria ha i seguenti record:</p>
+<ul>
+    <li><strong>Libri:</strong> {{ num_books }}</li>
+    <li><strong>Copie:</strong> {{ num_instances }}</li>
+    <li><strong>Copie disponibili:</strong> {{ num_instances_disp }}</li>
+    <li><strong>Autori:</strong> {{ num_autori }}</li>
+    <li><strong>Generi:</strong> {{ num_generi }}</li>
+    <li><strong>Libri che contengono la parola "Montalbano":</strong> {{ num_libri_mont }}</li>
+</ul>
+{% endblock %}
