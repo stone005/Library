@@ -49,10 +49,10 @@ class BookInstance(models.Model):
     imprint = models.CharField(max_length=200)
     rientro = models.DateField(null=True, blank=True)
     Stato_prestito = (
-        (1, 'Riparazione'),
-        (2, 'In prestito'),
-        (3, 'Disponibile'),
-        (4, 'Riservato'),
+        (1, 'Riparazione'),  # m
+        (2, 'In prestito'),  #
+        (3, 'Disponibile'),  # a
+        (4, 'Riservato'),  # r
     )
     stato = models.IntegerField(choices=Stato_prestito, default=1, help_text='Disponibilità del libro')
 
@@ -61,7 +61,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return '{0} ({1})'.format(self.id, self.book.titolo)
-        #return f'{self.id} ({self.book.titolo})'
+        # return f'{self.id} ({self.book.titolo})'
 
 
 class Autore(models.Model):
