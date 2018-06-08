@@ -72,10 +72,10 @@ class Autore(models.Model):
     morto = models.DateField('Morto',null=True, blank=True)
 
     class Meta:
-        ordering = ["cognome","nome"]
+        ordering = ["cognome", "nome"]
 
     def get_absolute_url(self):
-        return reverse('author-details', args=[str(self.id)])
+        return reverse('autore-detail', args=[str(self.id)])
 
     def __str__(self):
         return '{0},{1}'.format(self.cognome, self.nome)

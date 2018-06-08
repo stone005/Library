@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Autore: {{ autore.cognome }} ({{ autore.nome }})</h1>
+
+    <p>{{ autore.nato }} - {{ autore.morto }}</p>
+
+    <div style="margin-top:20px">
+        <h4>Libri</h4>
+        {% for copy in autore.book_set.all %}
+            <hr>
+            <p><strong>Titolo: </strong> {{ copy.titolo }} </p>
+            <p><strong>ISBN: </strong>{{ copy.isbn }}</p>
+        {% endfor%}
+    </div>
+{% endblock %}
