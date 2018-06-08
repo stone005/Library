@@ -21,6 +21,11 @@ def index(request):
     # Libri che contengono la parola 'montalbano'
     num_libri_mont = Book.objects.filter(titolo__icontains='montalbano').count()
 
+    # Numero di visite memorizzate in una Session
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
+    # Inviare il template index.html con i dati memorizzati nella session
     return render(
         request,
         'index.html',
@@ -29,8 +34,9 @@ def index(request):
                  'num_instances_disp': num_instances_disp,
                  'num_autori': num_autori,
                  'num_generi': num_generi,
-                 'num_libri_mont': num_libri_mont
-                 }
+                 'num_libri_mont': num_libri_mont,
+                 'num_visits': num_visits
+                 },
     )
 
 
@@ -41,4 +47,12 @@ class BookViewList(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+class AuthorViewList(generic.ListView):
+    model = Autore
+
+
+class AutoreDetailView(generic.DetailView):
+    model = Autore
 
