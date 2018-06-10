@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import Book, Autore, BookInstance, Genere, Language
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def index(request):
     """
     View per Homepage del sito
@@ -55,4 +56,3 @@ class AuthorViewList(generic.ListView):
 
 class AutoreDetailView(generic.DetailView):
     model = Autore
-
